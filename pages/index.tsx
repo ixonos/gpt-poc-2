@@ -21,10 +21,10 @@ export default function Home() {
 
 
   // show the Settings Dialog at startup if the API key is required but not set
-  React.useEffect(() => {
-    if (!process.env.HAS_SERVER_KEY_OPENAI && !isValidOpenAIApiKey(apiKey))
-      setSettingsShown(true);
-  }, [apiKey]);
+  // React.useEffect(() => {
+  //   if (!process.env.HAS_SERVER_KEY_OPENAI && !isValidOpenAIApiKey(apiKey))
+  //     setSettingsShown(true);
+  // }, [apiKey]);
 
 
   return (

@@ -20,7 +20,7 @@ export const pdfToText = async (file: File): Promise<string> => {
   const { getDocument, GlobalWorkerOptions } = await import('pdfjs-dist');
 
   // Set the worker script path
-  GlobalWorkerOptions.workerSrc = '/workers/pdf.worker.min.js';
+  GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.5.141/pdf.worker.min.js';
 
   const arrayBuffer = await file.arrayBuffer();
   const pdf = await getDocument(arrayBuffer).promise;
