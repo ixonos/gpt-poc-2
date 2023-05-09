@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 import { ElevenLabs } from '@/modules/elevenlabs/elevenlabs.types';
-import { getFromElevenLabs } from './speech';
+import { getFromElevenLabs } from '@/modules/elevenlabs/elevenlabs.server';
 
 
 export default async function handler(req: NextRequest) {
@@ -31,7 +31,7 @@ export default async function handler(req: NextRequest) {
 
     return new NextResponse(JSON.stringify(response), { status: 200, headers: { 'Content-Type': 'application/json' } });
   } catch (error) {
-    console.error('Error fetching voices from ElevenLabs:', error);
+    console.error('api/elevenlabs/voices error:', error);
     return new NextResponse(
       JSON.stringify({
         type: 'error',

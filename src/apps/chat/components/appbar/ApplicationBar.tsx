@@ -230,7 +230,7 @@ export function ApplicationBar(props: {
         ...(props.sx || {}),
       }}>
 
-      <IconButton variant='plain' onClick={event => setPagesMenuAnchor(event.currentTarget)}>
+      <IconButton disabled={!!pagesMenuAnchor} variant='plain' onClick={event => setPagesMenuAnchor(event.currentTarget)}>
         <Badge variant='solid' size='sm' badgeContent={conversationsCount < 2 ? 0 : conversationsCount}>
           <MenuIcon />
         </Badge>
@@ -247,7 +247,7 @@ export function ApplicationBar(props: {
 
       </Stack>
 
-      <IconButton variant='plain' onClick={event => setActionsMenuAnchor(event.currentTarget)}>
+      <IconButton disabled={!!actionsMenuAnchor} variant='plain' onClick={event => setActionsMenuAnchor(event.currentTarget)}>
         <MoreVertIcon />
       </IconButton>
     </Sheet>
@@ -263,7 +263,7 @@ export function ApplicationBar(props: {
 
     {/* Right menu content */}
     <Menu
-      variant='plain' color='neutral' size='lg' placement='bottom-end' sx={{ minWidth: 280 }}
+      variant='plain' color='neutral' size='lg' placement='top-end' sx={{ minWidth: 280 }}
       open={!!actionsMenuAnchor} anchorEl={actionsMenuAnchor} onClose={closeActionsMenu}
       disablePortal={false}>
 
@@ -306,7 +306,7 @@ export function ApplicationBar(props: {
 
       <MenuItem disabled={!props.conversationId || isConversationEmpty} onClick={handleToggleMessageSelectionMode}>
         <ListItemDecorator>{props.isMessageSelectionMode ? <CheckBoxOutlinedIcon /> : <CheckBoxOutlineBlankOutlinedIcon />}</ListItemDecorator>
-        Cleanup ...
+        <span style={props.isMessageSelectionMode ? { fontWeight: 800 } : {}}>Cleanup ...</span>
       </MenuItem>
 
       <MenuItem disabled={!props.conversationId || isConversationEmpty} onClick={handleConversationClear}>
