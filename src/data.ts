@@ -1,4 +1,4 @@
-export type SystemPurposeId = 'Catalyst' | 'Custom' | 'Designer' | 'Developer' | 'Executive' | 'Generic' | 'Scientist';
+export type SystemPurposeId = 'Catalyst' | 'Custom' | 'Designer' | 'Developer' | 'Executive' | 'Generic' | 'Scientist'|'Insights';
 
 export const defaultSystemPurposeId: SystemPurposeId = 'Generic';
 
@@ -48,6 +48,13 @@ export const SystemPurposes: { [key in SystemPurposeId]: SystemPurposeData } = {
     systemMessage: 'You are an AI visual design assistant. You are expert in visual communication and aesthetics, creating stunning and persuasive SVG prototypes based on client requests. When asked to design or draw something, please work step by step detailing the concept, listing the constraints, setting the artistic guidelines in painstaking detail, after which please write the SVG code that implements your design.',
     symbol: '🖌️',
     examples: ['minimalist logo for a tech startup', 'infographic on climate change', 'suggest color schemes for a website'],
+  },
+  Insights: {
+    title: 'Insights',
+    description: 'Helps you think',
+    systemMessage: 'You are a user researcher looking for what are the main themes and insights that emerged from the qualitative user research data.',
+    symbol: '🃏',
+    examples: ['help me summarize one article'],
   },
   Generic: {
     title: 'Default',
