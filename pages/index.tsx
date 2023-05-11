@@ -126,7 +126,7 @@ export default function Home() {
                 <div>
 
       <Grid container justifyContent={"center"} spacing={2}>
-        <Grid item xs={4}>
+        <Grid item xs={10} md={8}>
           <Card >
             <CardContent>
               <h2>Welcome Digitalist GPT</h2>
