@@ -42,9 +42,11 @@ export default function Home() {
   const [profile, setProfile] = useState([]);
     //google auth
 
-  const [userobj, setUserobj] =useState<Partial<any>[]>(() => {
+  const [userobj, setUserobj] =useState(() => {
     if (typeof window !== 'undefined') {
       return JSON.parse(localStorage.getItem('userobj') as string);
+    }else{
+      return [];
     }
   });
 
@@ -88,7 +90,7 @@ export default function Home() {
       if (typeof window !== 'undefined') {
         localStorage.removeItem('userobj');
       }
-      setProfile(null);
+      setProfile([]);
     };
 
 
