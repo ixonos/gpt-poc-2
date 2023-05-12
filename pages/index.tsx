@@ -44,7 +44,7 @@ export default function Home() {
 
   const [userobj, setUserobj] = useState(() => {
     if (typeof window !== 'undefined') {
-      JSON.parse(localStorage.getItem('userobj'))
+      JSON.parse(localStorage.getItem('userobj') as string);
     }
   });
 
