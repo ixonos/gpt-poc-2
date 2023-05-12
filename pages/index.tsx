@@ -42,9 +42,9 @@ export default function Home() {
   const [profile, setProfile] = useState([]);
     //google auth
 
-  const [userobj, setUserobj] = useState(() => {
+  const [userobj, setUserobj] =useState<Partial<any>[]>(() => {
     if (typeof window !== 'undefined') {
-      JSON.parse(localStorage.getItem('userobj') as string);
+      return JSON.parse(localStorage.getItem('userobj') as string);
     }
   });
 
@@ -53,11 +53,11 @@ export default function Home() {
     () => {
       console.log("running effect");
       console.log(userobj);
-      if (userobj) {
+      if (userobj !==undefined) {
         axios
-          .get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${userobj.access_token}`, {
+          .get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${(userobj as any)?.access_token}`, {
             headers: {
-              Authorization: `Bearer ${userobj.access_token}`,
+              Authorization: `Bearer ${(userobj as any)?.access_token}`,
               Accept: 'application/json'
             }
           })
@@ -73,8 +73,9 @@ export default function Home() {
 
   const handlelogin = useGoogleLogin({
     onSuccess: (codeResponse) => {
-      setUserobj(codeResponse);
+
       if (typeof window !== 'undefined') {
+        setUserobj(codeResponse);
         localStorage.setItem('userobj', JSON.stringify(codeResponse));
       }
       console.log(codeResponse);
