@@ -134,10 +134,10 @@ export default function Home() {
             <CardContent>
               <h2>Welcome Digitalist GPT</h2>
             </CardContent>
-            <Button variant="contained" onClick={handlelogin}>
-              Login
-            </Button>
-            {/*<button onClick={() => handlelogin()}>Sign in with Google 🚀</button>*/}
+            {/*<Button variant="contained" onClick={handlelogin}>*/}
+            {/*  Login*/}
+            {/*</Button>*/}
+            <Button variant="contained" onClick={() => handlelogin()}>Sign in with Google 🚀</Button>
           </Card>
 
         </Grid>
