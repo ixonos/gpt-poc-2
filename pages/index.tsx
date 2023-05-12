@@ -42,9 +42,11 @@ export default function Home() {
   const [profile, setProfile] = useState([]);
     //google auth
 
-  const [userobj, setUserobj] = useState(() => {
+  const [userobj, setUserobj] =useState(() => {
     if (typeof window !== 'undefined') {
-      JSON.parse(localStorage.getItem('userobj') as string);
+      return JSON.parse(localStorage.getItem('userobj') as string);
+    }else{
+      return [];
     }
   });
 
@@ -53,11 +55,11 @@ export default function Home() {
     () => {
       console.log("running effect");
       console.log(userobj);
-      if (userobj) {
+      if (userobj !==undefined) {
         axios
-          .get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${userobj.access_token}`, {
+          .get(`https://www.googleapis.com/oauth2/v1/userinfo?access_token=${(userobj as any)?.access_token}`, {
             headers: {
-              Authorization: `Bearer ${userobj.access_token}`,
+              Authorization: `Bearer ${(userobj as any)?.access_token}`,
               Accept: 'application/json'
             }
           })
@@ -73,8 +75,9 @@ export default function Home() {
 
   const handlelogin = useGoogleLogin({
     onSuccess: (codeResponse) => {
-      setUserobj(codeResponse);
+
       if (typeof window !== 'undefined') {
+        setUserobj(codeResponse);
         localStorage.setItem('userobj', JSON.stringify(codeResponse));
       }
       console.log(codeResponse);
@@ -87,7 +90,7 @@ export default function Home() {
       if (typeof window !== 'undefined') {
         localStorage.removeItem('userobj');
       }
-      setProfile(null);
+      setProfile([]);
     };
 
 
@@ -101,12 +104,12 @@ export default function Home() {
      */
     <NoSSR>
 
-        {profile?.id ? (
+        {(profile as any)?.id ? (
             <div>
-                <img src={profile.picture} alt="user image"/>
+                <img src={(profile as any)?.picture} alt="user image"/>
                 <h3>User Logged in</h3>
-                <p>Name: {profile.name}</p>
-                <p>Email Address: {profile.email}</p>
+                <p>Name: {(profile as any)?.name}</p>
+                <p>Email Address: {(profile as any)?.email}</p>
                 <button onClick={logOut}>Log out</button>
 
             <Container maxWidth={centerMode === 'full' ? false : centerMode === 'narrow' ? 'md' : 'xl'} disableGutters sx={{
@@ -131,10 +134,10 @@ export default function Home() {
             <CardContent>
               <h2>Welcome Digitalist GPT</h2>
             </CardContent>
-            <Button variant="contained" onClick={handlelogin}>
-              Login
-            </Button>
-            {/*<button onClick={() => handlelogin()}>Sign in with Google 🚀</button>*/}
+            {/*<Button variant="contained" onClick={handlelogin}>*/}
+            {/*  Login*/}
+            {/*</Button>*/}
+            <Button variant="contained" onClick={() => handlelogin()}>Sign in with Google 🚀</Button>
           </Card>
 
         </Grid>
