@@ -104,12 +104,12 @@ export default function Home() {
      */
     <NoSSR>
 
-        {profile?.id ? (
+        {(profile as any)?.id ? (
             <div>
-                <img src={profile.picture} alt="user image"/>
+                <img src={(profile as any)?.picture} alt="user image"/>
                 <h3>User Logged in</h3>
-                <p>Name: {profile.name}</p>
-                <p>Email Address: {profile.email}</p>
+                <p>Name: {(profile as any)?.name}</p>
+                <p>Email Address: {(profile as any)?.email}</p>
                 <button onClick={logOut}>Log out</button>
 
             <Container maxWidth={centerMode === 'full' ? false : centerMode === 'narrow' ? 'md' : 'xl'} disableGutters sx={{
