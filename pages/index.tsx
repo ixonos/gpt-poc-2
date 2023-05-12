@@ -32,7 +32,7 @@ export default function Home() {
 
 
 
-
+  //google auth realted stuff
   if (typeof window !== 'undefined') {
     console.log('we are running on the client')
   } else {
@@ -94,7 +94,7 @@ export default function Home() {
     };
 
 
-  //====================================
+  //==================================== google auth related stuff
 
 
   return (
