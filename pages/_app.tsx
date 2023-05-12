@@ -9,6 +9,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import '@/common/styles/GithubMarkdown.css';
 import { Brand } from '@/common/brand';
 import { createEmotionCache, theme } from '@/common/theme';
+import {GoogleOAuthProvider, useGoogleLogin} from "@react-oauth/google";
 
 
 // Client-side cache, shared for the whole session of the user in the browser.
@@ -27,6 +28,7 @@ export default function MyApp({ Component, emotionCache = clientSideEmotionCache
         <meta name='viewport' content='minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no' />
       </Head>
       {/* Rect-query provider */}
+        <GoogleOAuthProvider clientId="321179445379-ec5hduu2llaj77tbjga4qqaogtj6curu.apps.googleusercontent.com">
       <QueryClientProvider client={queryClient}>
         <CssVarsProvider defaultMode='light' theme={theme}>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
@@ -34,6 +36,7 @@ export default function MyApp({ Component, emotionCache = clientSideEmotionCache
           <Component {...pageProps} />
         </CssVarsProvider>
       </QueryClientProvider>
+        </GoogleOAuthProvider>
     </CacheProvider>
     <VercelAnalytics debug={false} />
   </>;
