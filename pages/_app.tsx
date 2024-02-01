@@ -13,6 +13,7 @@ import '~/common/styles/GithubMarkdown.css';
 import '~/common/styles/NProgress.css';
 import '~/common/styles/app.styles.css';
 
+import {GoogleOAuthProvider, useGoogleLogin} from "@react-oauth/google";
 import { ProviderBackendCapabilities } from '~/common/providers/ProviderBackendCapabilities';
 import { ProviderBootstrapLogic } from '~/common/providers/ProviderBootstrapLogic';
 import { ProviderSingleTab } from '~/common/providers/ProviderSingleTab';
@@ -31,6 +32,7 @@ const MyApp = ({ Component, emotionCache, pageProps }: MyAppProps) =>
       <meta name='viewport' content='minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no' />
     </Head>
 
+    <GoogleOAuthProvider clientId="321179445379-ec5hduu2llaj77tbjga4qqaogtj6curu.apps.googleusercontent.com">
     <ProviderTheming emotionCache={emotionCache}>
       <ProviderSingleTab>
         <ProviderTRPCQuerySettings>
@@ -45,6 +47,7 @@ const MyApp = ({ Component, emotionCache, pageProps }: MyAppProps) =>
         </ProviderTRPCQuerySettings>
       </ProviderSingleTab>
     </ProviderTheming>
+    </GoogleOAuthProvider>
 
     {isVercelFromFrontend && <VercelAnalytics debug={false} />}
     {isVercelFromFrontend && <VercelSpeedInsights debug={false} sampleRate={1 / 2} />}
