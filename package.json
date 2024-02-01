@@ -13,6 +13,8 @@
     "vercel:env:pull": "npx vercel env pull .env.development.local"
   },
   "dependencies": {
+    "@react-oauth/google": "^0.11.0",
+    "axios": "^1.4.0",
     "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.11.3",
     "@emotion/server": "^11.11.0",
