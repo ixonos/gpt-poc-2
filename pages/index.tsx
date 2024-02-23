@@ -1,7 +1,6 @@
 import * as React from 'react';
 
-import {AppChat} from '../src/apps/chat/AppChat';
-import {useRedirectToNewsOnUpdates} from '../src/apps/news/news.hooks';
+import { AppChat } from '../src/apps/chat/AppChat';
 
 import {withLayout} from '~/common/layout/withLayout';
 
@@ -11,9 +10,9 @@ import axios from "axios";
 import {Button, Card, CardContent, Grid} from "@mui/material";
 
 export default function IndexPage() {
-  // show the News page if there are unseen updates
-  useRedirectToNewsOnUpdates();
 
+  // TODO: This Index page will point to the Dashboard (or a landing page)
+  // For now it offers the chat experience, but this will change. #299
 
   //============================ start of google auth realted stuff
   if (typeof window !== 'undefined') {

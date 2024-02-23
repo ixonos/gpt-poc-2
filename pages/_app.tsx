@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Head from 'next/head';
 import { MyAppProps } from 'next/app';
-import { Analytics as VercelAnalytics } from '@vercel/analytics/react';
+import { Analytics as VercelAnalytics } from '@vercel/analytics/next';
 import { SpeedInsights as VercelSpeedInsights } from '@vercel/speed-insights/next';
 
 
@@ -23,6 +23,7 @@ import { ProviderSingleTab } from '~/common/providers/ProviderSingleTab';
 import { ProviderSnacks } from '~/common/providers/ProviderSnacks';
 import { ProviderTRPCQueryClient } from '~/common/providers/ProviderTRPCQueryClient';
 import { ProviderTheming } from '~/common/providers/ProviderTheming';
+import { isVercelFrontend } from '~/common/util/pwaUtils';
 
 
 const MyApp = ({ Component, emotionCache, pageProps }: MyAppProps) =>
@@ -49,8 +50,8 @@ const MyApp = ({ Component, emotionCache, pageProps }: MyAppProps) =>
     </ProviderTheming>
     </GoogleOAuthProvider>
 
-    <VercelAnalytics debug={false} />
-    <VercelSpeedInsights debug={false} sampleRate={1 / 10} />
+    {isVercelFrontend && <VercelAnalytics debug={false} />}
+    {isVercelFrontend && <VercelSpeedInsights debug={false} sampleRate={1 / 2} />}
 
   </>;
 
